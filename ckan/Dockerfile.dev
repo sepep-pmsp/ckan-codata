@@ -23,27 +23,30 @@ FROM ckan/ckan-dev:2.11
 
 USER root
 
-### Scheming ###
-RUN pip3 install -e 'git+https://github.com/ckan/ckanext-scheming.git@master#egg=ckanext-scheming'
-
-COPY ./ckan_dataset_schema.yaml ${APP_DIR}/src/ckanext-scheming/ckanext/scheming
-
-### Pages ###
-#RUN  pip3 install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages
-
-### DCAT ###
-#RUN  pip3 install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
-#     pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
+# Add extensions
+# Add extensions
+RUN pip3 install -e 'git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial' && \ 
+    pip3 install  -r ${APP_DIR}/src/ckanext-spatial/requirements.txt && \
+    pip3 install  -e 'git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview' && \
+    pip3 install  -e 'git+https://github.com/ckan/ckanext-pdfview#egg=ckanext-pdfview' && \
+    pip3 install  -e 'git+https://github.com/ckan/ckanext-scheming.git@master#egg=ckanext-scheming'
 
 # Clone the extension(s) your are writing for your own project in the `src` folder
 # to get them mounted in this image at runtime
+#RUN ln -s /srv/app/src/ckanext-codata /srv/app/src/ckan/ckanext/ckanext-codata
+
+# dAR PERMISSÕES 
+RUN chmod -R 755 /usr/local/lib/python3.10/site-packages
 
 # Copy custom initialization scripts
 COPY --chown=ckan-sys:ckan-sys docker-entrypoint.d/* /docker-entrypoint.d/
 
+COPY --chown=ckan-sys:ckan-sys patches ${APP_DIR}/patches
+
+COPY ./ckan_dataset_schema.yaml ${APP_DIR}/src/ckanext-scheming/ckanext/scheming
+
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
-COPY --chown=ckan-sys:ckan-sys patches ${APP_DIR}/patches
 
 USER ckan
 
