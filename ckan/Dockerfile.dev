@@ -24,7 +24,6 @@ FROM ckan/ckan-dev:2.11
 USER root
 
 # Add extensions
-# Add extensions
 RUN pip3 install -e 'git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial' && \ 
     pip3 install  -r ${APP_DIR}/src/ckanext-spatial/requirements.txt && \
     pip3 install  -e 'git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview' && \
@@ -35,7 +34,8 @@ RUN pip3 install -e 'git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext
 # to get them mounted in this image at runtime
 #RUN ln -s /srv/app/src/ckanext-codata /srv/app/src/ckan/ckanext/ckanext-codata
 
-# dAR PERMISSÕES 
+# set permissions 
+#TODO: find out a better approach
 RUN chmod -R 755 /usr/local/lib/python3.10/site-packages
 
 # Copy custom initialization scripts
