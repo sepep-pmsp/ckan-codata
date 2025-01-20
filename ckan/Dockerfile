@@ -16,7 +16,7 @@ COPY --chown=ckan-sys:ckan-sys patches ${APP_DIR}/patches
 
 COPY ./ckan_dataset_schema.yaml ${APP_DIR}/src/ckanext-scheming/ckanext/scheming
 
-USER ckan
+##USER ckan
 
 RUN for d in $APP_DIR/patches/*; do \
         if [ -d $d ]; then \
