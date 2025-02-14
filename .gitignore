@@ -8,3 +8,7 @@ _solr/schema.xml
 _src/*
 local/*
 .env
+.dev.env
+
+# ckan api interaction scripts
+apitest.ipynb
