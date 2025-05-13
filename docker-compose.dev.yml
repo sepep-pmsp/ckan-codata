@@ -70,6 +70,8 @@ services:
     volumes:
       - solr_data:/var/solr
     restart: unless-stopped
+    ports:
+      - "8983:8983"
     healthcheck:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8983/solr/"]
 

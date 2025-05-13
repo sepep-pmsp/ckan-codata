@@ -1,0 +1,29 @@
+{% set intro = g.site_intro_text %}
+
+<div class="module-promotion card box">
+  <!-- Adiciona card-cover para exibir a imagem superior similar ao Webflow -->
+  <div class="card-cover">
+    <img src="/urbis-image.webp" 
+         loading="lazy" 
+         alt="Mapa da cidade" 
+         class="card-cover-img wide">
+    <!-- Adiciona padding-2 para apresentar o nome do site -->
+    <div class="padding-2">
+      <h1 class="h1">URBIS - Dados Abertos</h1>
+      <div class="spacer tiny fill"></div>
+    </div>
+  </div>
+  
+  <!-- Preserva o conteúdo original e adiciona card-body scroll para o texto -->
+  <div class="card-body scroll">
+    <div>
+      {% if intro %}
+        {{ h.render_markdown(intro) }}
+      {% else %}
+        <div class="about-rich-text w-richtext">
+          <p>O URBIS, fruto do Termo de Convênio Nº 01/2023 celebrado entre a Secretaria de Governo Municipal (SGM) da Prefeitura de São Paulo e a Agência São Paulo de Desenvolvimento (ADE SAMPA), é uma solução de código aberto e licença livre, concebido para unificar e disponibilizar, em um único repositório, os dados relativos ao controle do uso e ocupação do solo, além de oferecer uma ferramenta de análise automática de viabilidade de projetos no território municipal. Com uma infraestrutura robusta e um data lake estruturado segundo critérios de curadoria especializada fornecidos pela Administração Pública, o URBIS assegura a qualidade das informações, promovendo maior transparência e eficiência na gestão pública e no planejamento urbano.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
