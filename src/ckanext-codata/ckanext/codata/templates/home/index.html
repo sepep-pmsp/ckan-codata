@@ -1,0 +1,42 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+<div class="homepage">
+  <div id="content" class="container">
+    {{ self.flash() }}
+  </div>
+  {% block primary_content %}
+  <div role="main">
+    <div class="main hero">
+      <div class="container">
+        <div class="row">
+          <!-- Left Column: Promoted Content -->
+          <div class="col-md-6">
+            {% block promoted %}
+              {% snippet 'home/snippets/jj.html' %}
+            {% endblock %}
+          </div>
+          <!-- Right Column: Search and Metadata Stats (stacked vertically) -->
+          <div class="col-md-6">
+            {% block search %}
+              {% snippet 'home/snippets/custom_search.html', search_facets=search_facets %}
+            {% endblock %}
+            {% block metadata_stats %}
+              {% snippet 'home/snippets/metadata_stats.html' %}
+            {% endblock %}
+            {% block faq %}
+              <script type="text/javascript" src="{{ h.url_for_static('ckanext-codata', 'gen/faq.min.js') }}"></script>
+              {% snippet 'home/snippets/faq.html' %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+</div>
+{% endblock %}
