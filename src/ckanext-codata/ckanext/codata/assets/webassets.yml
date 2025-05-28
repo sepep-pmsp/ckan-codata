@@ -1,0 +1,23 @@
+# codata-js:
+#   filter: rjsmin
+#   output: ckanext-codata/%(version)s-codata.js
+#   contents:
+#     - js/codata.js
+#   extra:
+#     preload:
+#       - base/main
+
+# codata-css:
+#   filter: cssrewrite
+#   output: ckanext-codata/%(version)s-codata.css
+#   contents:
+#     - css/codata.css
+
+faq-js:
+  filter: rjsmin
+  output: ckanext-codata/%(version)s-faq.js
+  extra:
+    preload:
+      - base/main
+  contents:
+    - faq.js

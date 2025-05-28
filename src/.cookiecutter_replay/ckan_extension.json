@@ -1,0 +1,31 @@
+{
+  "cookiecutter": {
+    "project": "ckanext-codata",
+    "keywords": "CKAN",
+    "description": "ckan custom extension to codata ckan instance",
+    "author": "Gabriel P. Folhes",
+    "author_email": "gabriel.pisa@basedosdados.org",
+    "github_user_name": "sepep-pmsp",
+    "project_shortname": "codata",
+    "plugin_class_name": "CodataPlugin",
+    "include_examples": "0",
+    "ckan_version": "2.11",
+    "_source": "cli",
+    "_template": "/srv/app/src/ckan/contrib/cookiecutter/ckan_extension",
+    "_output_dir": "/srv/app/src_extensions",
+    "_repo_dir": "/srv/app/src/ckan/contrib/cookiecutter/ckan_extension",
+    "_checkout": null
+  },
+  "_cookiecutter": {
+    "project": "ckanext-codata",
+    "keywords": "CKAN",
+    "description": "ckan custom extension to codata ckan instance",
+    "author": "Gabriel P. Folhes",
+    "author_email": "gabriel.pisa@basedosdados.org",
+    "github_user_name": "sepep-pmsp",
+    "project_shortname": "codata",
+    "plugin_class_name": "CodataPlugin",
+    "include_examples": 0,
+    "ckan_version": "2.11"
+  }
+}
