@@ -65,12 +65,6 @@ dataset_fields:
     display_snippet: email.html
     display_email_name_field: maintainer
 
-  # - field_name: spatial_coverage
-  #   label: Cobertura Espacial
-  #   form_placeholder: Centro, Zona Sul, Zona Oeste, Zona Leste
-  #   validators: not_empty
-  #   required: true
-
 resource_fields:
   - field_name: url
     label: URL
@@ -98,6 +92,3 @@ resource_fields:
     form_placeholder: Centro, Zona Sul, Zona Oeste, Zona Leste
     validators: not_empty
     required: true
-
-    #todo: adicionar valores 'sem valor' nos campos de metadaods customizado
-    #todo: adicionar URL do github como campo de metadados de recurso
