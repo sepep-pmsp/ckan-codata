@@ -1,10 +1,12 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-
+import ckan.model as model
+from sqlalchemy import func
 
 class CodataPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.ITemplateHelpers)  
 
 
     # IConfigurer
@@ -42,4 +44,28 @@ class CodataPlugin(plugins.SingletonPlugin):
         return search_results
 
 
+    def get_helpers(self):
+        return {
+            'codata_total_resources': self._get_total_resources,
+       #     'codata_total_datasets': self._get_total_datasets,
+       #     'codata_total_downloads': self._get_total_downloads,
+       #     'codata_total_storage_gb': self._get_total_storage_gb,
+        }
 
+    def _get_total_resources(self):
+        """
+        Retorna a quantidade total de recursos públicos no portal
+        """
+        try:
+            # Query para contar recursos de datasets públicos
+            query = model.Session.query(model.Resource).join(model.Package)\
+                .filter(model.Package.state == 'active')\
+                .filter(model.Package.private == False)\
+                .filter(model.Resource.state == 'active')
+            
+            total_resources = query.count()
+            return total_resources
+        except Exception as e:
+            # Log do erro e retorna 0 como fallback
+            toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+            return 0
