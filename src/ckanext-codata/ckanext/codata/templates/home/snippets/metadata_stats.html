@@ -4,20 +4,20 @@
   </div>
   <div class="grid _3c padding">
     <div id="w-node-e90a3c97-749c-3619-9aab-2a792f213bc5-a5892e5b" class="flex vert center">
-      <div class="big-number">1230</div>
-      <div class="input-label btn-label">Quantidade de Downloads</div>
+      <div class="big-number"> {{ h.codata_total_datasets() }}</div>
+      <div class="input-label btn-label">Quantidade de Datasets</div>
+    </div>
+    <div id="w-node-_983c20cc-ba92-76cd-79c1-f2b481fe54b1-a5892e5b" class="flex vert center">
+      <div class="big-number">{{ h.codata_total_resources() }}</div>
+      <div class="input-label btn-label">Quantidade de recursos</div>
     </div>
     <div id="w-node-_054896a8-4066-0fa1-2976-d07a3a5e9e3d-a5892e5b" class="flex vert center">
-      <div class="big-number">420</div>
+      <div class="big-number">{{ h.codata_total_storage_gb() }}</div>
       <div class="input-label btn-label">Quatidade de Gigabytes armazenados</div>
     </div>
     <div id="w-node-e46dcd71-70a4-2d52-139c-2d5ddb6e7b21-a5892e5b" class="flex vert center">
-      <div class="big-number">35</div>
+      <div class="big-number">{{ h.codata_weekly_updates() }}</div>
       <div class="input-label btn-label">Quantidade de atualizações semanais</div>
-    </div>
-    <div id="w-node-_983c20cc-ba92-76cd-79c1-f2b481fe54b1-a5892e5b" class="flex vert center">
-      <div class="big-number">120</div>
-      <div class="input-label btn-label">Quantidade de recursos</div>
     </div>
   </div>
 </div>
