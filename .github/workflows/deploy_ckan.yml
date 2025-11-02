@@ -1,13 +1,10 @@
 name: Deploy Ckan
-
 on:
   workflow_dispatch:
   push:
     branches:
       - master
-      - prod-setup
   
-
 jobs: 
   build_push_acs:  
     runs-on: ubuntu-latest
@@ -34,7 +31,6 @@ jobs:
          context: ./nginx
          file: ./nginx/Dockerfile
          tags: ${{ secrets.ACR_LOGIN_SERVER }}/ckan-nginx:latest
-         #Setar {{ github.event_name != 'pull_request' }}
          push: true
 
     - name: PostgreSQL build and push to ACR
