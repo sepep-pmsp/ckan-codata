@@ -71,7 +71,7 @@ jobs:
           docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_SP_APP_ID }} -p ${{ secrets.ACR_SP_PASSWORD }}
           
           echo "Navigating to Docker Compose directory..."
-          cd ckan-orcamento
+          cd ckan-codata
 
           echo "Pulling the latest images..."
           docker compose -f docker-compose.prod.yml pull

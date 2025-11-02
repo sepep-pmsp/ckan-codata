@@ -30,9 +30,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "traefik_acme_data:/letsencrypt"
   nginx:
-    build:
-      context: nginx/
-      dockerfile: Dockerfile
+    image: ${ACR_LOGIN_SERVER}/ckan-nginx:latest
     networks:
       - webnet
       - ckannet
@@ -49,11 +47,7 @@ services:
       - "traefik.docker.network=ckan-codata_webnet"
     
   ckan:
-    build:
-      context: ckan/
-      dockerfile: Dockerfile
-      args:
-        - TZ=${TZ}
+    image: ${ACR_LOGIN_SERVER}/ckan-ckan:latest
     networks:
       - ckannet
       - dbnet
@@ -93,8 +87,7 @@ services:
       retries: 3
 
   db:
-    build:
-      context: postgresql/
+    image: ${ACR_LOGIN_SERVER}/ckan-ckan:latest
     networks:
       - dbnet
     environment:
