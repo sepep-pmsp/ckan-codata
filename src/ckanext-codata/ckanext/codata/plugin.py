@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 class CodataPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IPackageController, inherit=True)
-    plugins.implements(plugins.ITemplateHelpers)  
+    plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IFacets)  
 
 
     # IConfigurer
@@ -25,26 +26,26 @@ class CodataPlugin(plugins.SingletonPlugin):
     def before_dataset_index(self, pkg_dict: dict) -> dict:
         spatial_values = []
         for resource in pkg_dict.get('resources', []):
-            value = resource.get('spatial_coverage')
+            value = resource.get('spatial_granularity')
             if value and value not in spatial_values:
                 spatial_values.append(value)
         if spatial_values:
-            pkg_dict['res_extras_spatial_coverage'] = spatial_values
+            pkg_dict['res_extras_spatial_granularity'] = spatial_values
         return pkg_dict
     
-    def after_dataset_search(self, search_results: dict, search_params: dict) -> dict:
-    # Suppose you want to inject a custom mapping into the search_results
-        search_results['facet_titles'] = {
+
+    def dataset_facets(self, facets_dict, package_type):
+        """Define títulos de facets nativamente no CKAN"""
+        return {
             'organization': 'Organizações',
             'groups': 'Grupos',
             'tags': 'Etiquetas',
             'res_format': 'Formatos',
             'license_id': 'Licenças',
-            'res_extras_spatial_coverage': 'Cobertra Espacial'
+            'res_extras_spatial_granularity': 'Granularidade Espacial'
         }
-        return search_results
-
-
+    
+    
     def get_helpers(self):
         return {
             'codata_total_resources': self._get_total_resources,

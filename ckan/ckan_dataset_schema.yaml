@@ -29,12 +29,6 @@ dataset_fields:
     label: Organization
     preset: dataset_organization
 
-  - field_name: url
-    label: Source
-    form_placeholder: http://example.com/dataset.json
-    display_property: foaf:homepage
-    display_snippet: link.html
-
   - field_name: version
     label: Version
     validators: not_empty is_positive_integer
@@ -43,24 +37,28 @@ dataset_fields:
 
   - field_name: author
     label: Author
-    form_placeholder: Joe Bloggs
+    validators: not_empty
+    form_placeholder: CODATA
     display_property: dc:creator
 
   - field_name: author_email
     label: Author Email
-    form_placeholder: joe@example.com
+    validators: not_empty
+    form_placeholder: codata@prefeitura.sp.gov.br
     display_property: dc:creator
     display_snippet: email.html
     display_email_name_field: author
 
   - field_name: maintainer
     label: Maintainer
-    form_placeholder: Joe Bloggs
+    validators: not_empty
+    form_placeholder: CODATA
     display_property: dc:contributor
 
   - field_name: maintainer_email
     label: Maintainer Email
-    form_placeholder: joe@example.com
+    validators: not_empty
+    form_placeholder: codata@prefeitura.sp.gov.br
     display_property: dc:contributor
     display_snippet: email.html
     display_email_name_field: maintainer
@@ -83,6 +81,10 @@ resource_fields:
     label: Format
     preset: resource_format_autocomplete
 
+  - field_name: update_frequency
+    label: Frequência de atualização dos dados
+    form_placeholder: A cada 6 meses
+
   - field_name: geometry_type
     label: Tipo de geometria
     form_placeholder: Point, LineString, Polygon
@@ -93,7 +95,25 @@ resource_fields:
     form_placeholder: "EPSG SIRGAS: 31983"
     validators: not_empty
 
+  - field_name: spatial_granularity
+    label: Granularidade Espacial
+    form_placeholder: Região Metropolitana de São Paulo, Município de São Paulo, Região do Município de São Paulo, Subprefeitura, etc
+    validators: not_empty
+
   - field_name: spatial_coverage
     label: Cobertura Espacial
     form_placeholder: Região Metropolitana de São Paulo, Município de São Paulo, Região do Município de São Paulo, Subprefeitura, etc
+    validators: not_empty
+
+  - field_name: active_table
+    label: Status da Tabela
+    form_placeholder: 
+    validators: not_empty
+
+  - field_name: code_url
+    label: Link para o código de tratamento 
+    validators: not_empty
+
+  - field_name: metadata_url
+    label: Link para o histórico de versões do documento de metadados do conjunto de dados
     validators: not_empty
