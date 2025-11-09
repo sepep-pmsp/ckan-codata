@@ -34,10 +34,6 @@ RUN pip3 install -e 'git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext
 # to get them mounted in this image at runtime
 #RUN ln -s /srv/app/src/ckanext-codata /srv/app/src/ckan/ckanext/ckanext-codata
 
-# set permissions 
-##TODO: find out a better approach
-#RUN chmod -R 755 /usr/local/lib/python3.10/site-packages
-
 # Copy custom initialization scripts
 COPY --chown=ckan-sys:ckan-sys docker-entrypoint.d/* /docker-entrypoint.d/
 
@@ -45,10 +41,6 @@ COPY --chown=ckan-sys:ckan-sys patches ${APP_DIR}/patches
 
 COPY ./ckan_dataset_schema.yaml ${APP_DIR}/src/ckanext-scheming/ckanext/scheming
 
-# Apply any patches needed to CKAN core or any of the built extensions (not the
-# runtime mounted ones)
-
-#USER ckan
 
 RUN for d in $APP_DIR/patches/*; do \
         if [ -d $d ]; then \
