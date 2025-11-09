@@ -68,12 +68,13 @@ jobs:
           
           echo "Navigating to Docker Compose directory..."
           cd ckan-codata
-
+          
+          echo "updating git repo with master branch"
+          git fetch --all
+          git reset --hard origin/master
+          
           echo "Pulling the latest images..."
           docker compose -f docker-compose.prod.yml pull
           
           echo "Stopping and restarting CKAN services..."
           docker compose -f docker-compose.prod.yml up -d --remove-orphans
-
-          echo "Cleaning up old Docker images..."
-          docker image prune -af
