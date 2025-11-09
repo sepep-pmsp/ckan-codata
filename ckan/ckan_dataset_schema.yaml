@@ -35,20 +35,6 @@ dataset_fields:
     form_placeholder: 1, 2, 3
     required: true
 
-  - field_name: author
-    label: Author
-    validators: not_empty
-    form_placeholder: CODATA
-    display_property: dc:creator
-
-  - field_name: author_email
-    label: Author Email
-    validators: not_empty
-    form_placeholder: codata@prefeitura.sp.gov.br
-    display_property: dc:creator
-    display_snippet: email.html
-    display_email_name_field: author
-
   - field_name: maintainer
     label: Maintainer
     validators: not_empty
@@ -62,6 +48,12 @@ dataset_fields:
     display_property: dc:contributor
     display_snippet: email.html
     display_email_name_field: maintainer
+  
+  - field_name: license_id
+    label: License
+    validators: not_empty
+    form_placeholder: AGPL
+
 
 resource_fields:
   - field_name: url
