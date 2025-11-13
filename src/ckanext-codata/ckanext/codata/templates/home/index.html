@@ -26,9 +26,11 @@
             {% block search %}
               {% snippet 'home/snippets/custom_search.html', search_facets=search_facets %}
             {% endblock %}
+            <br/>
             {% block metadata_stats %}
               {% snippet 'home/snippets/metadata_stats.html' %}
             {% endblock %}
+            <br/>
             {% block faq %}
               <script type="text/javascript" src="{{ h.url_for_static('ckanext-codata', 'gen/faq.min.js') }}"></script>
               {% snippet 'home/snippets/faq.html' %}
