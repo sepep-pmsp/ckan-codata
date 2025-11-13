@@ -1,6 +1,6 @@
 scheming_version: 2
 dataset_type: dataset
-about: A reimplementation of the default CKAN dataset schema
+about: Esquema customizado de metadados do Ckan Urbis
 about_url: http://github.com/ckan/ckanext-scheming
 
 dataset_fields:
